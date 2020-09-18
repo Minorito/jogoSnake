@@ -10,7 +10,7 @@
 struct corpo {
        //coordenadas do corpo;
        int x, y; 
-       // 0 - se é corpo  1 - se é cabeça
+       // 0 - se ï¿½ corpo  1 - se ï¿½ cabeï¿½a
        int cabeca; 
 };
 
