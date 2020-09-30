@@ -48,6 +48,10 @@ void menu()
             position = position;
         }
     }
+    if(position == 2){
+        system("cls");
+        exit(0);
+    }
 }
 
 int main()

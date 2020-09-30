@@ -7,28 +7,28 @@
 #define COBRASIZE 2
 #define FOOD 20
 
-struct corpo {
+typedef struct{
        //coordenadas do corpo;
        int x, y; 
        // 0 - se � corpo  1 - se � cabe�a
        int cabeca; 
-};
+}corpo;
 
-struct queue {
+typedef struct {
        int start, end;
-       struct corpo items[QUEUESIZE];
-};
+       corpo items[QUEUESIZE];
+}queue;
 
 
-struct comida{
+typedef struct {
        
-       struct corpo items[FOOD];
-};
+      corpo items[FOOD];
+}comida;
 
 //Declarando a estutura cobra (Global)
-struct queue cobra;
+queue cobra;
 
-struct comida comida;
+comida Comida;
 
 //____________________________________FIM___________________________________
 
@@ -37,19 +37,19 @@ struct comida comida;
 
 
 //INCIALIZA A FILA
-void inicializa_queue(struct queue *fila){
+void inicializa_queue(queue *fila){
      fila->start = QUEUESIZE - 1;
      fila->end = QUEUESIZE - 1;
 }
 
 
 //VERIFICA SE FILA VAZIA
-int empty(struct queue fila) {
+int empty(queue fila) {
     return fila.start == fila.end;
 }
 
 //RETIRA NA FILA
-struct corpo dequeue(struct queue *fila){
+ corpo dequeue(queue *fila){
     if (empty(*fila)){
        printf("Fila vazia");
     } else {
@@ -63,7 +63,7 @@ struct corpo dequeue(struct queue *fila){
 
 
 //INSERE NA FILA
-void enqueue(struct queue *fila, struct corpo elem){
+void enqueue(queue *fila, corpo elem){
     
     int endtemp = fila->end;
 
