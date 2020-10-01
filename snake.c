@@ -8,12 +8,14 @@
 #include "Fila.h"
 #define QUEUESIZE 1600
 #define COBRASIZE 2
-#define FOOD 5
+#define FOOD 10
 #define TAB 6
 
 int _comida = 0;
 long _speed = 40;
 int _dirD = 1, _dirA = 0, _dirW = 0, _dirS = 0, _x = 0, _jogar = 1;
+
+
 
 void arrowHere(int realPosition, int arrowPosition)
 {
@@ -269,19 +271,30 @@ void anda_cobra(queue *cobra, char dir)
    }
 }
 
+
+
 void menu()
 {  
     int position = 1;
     int keyPressed = 0;
 	char c;
 	long i;
-	
-   system("color A0");
-   system("cls");
+   
+
+system("color A0");
+
 
    while (keyPressed != 13)
    {
+   	
       system("cls");
+      printf("\n    _(_)(_)(_)(_)_      (_) _       (_)           _(_)_           (_)       _ (_)      (_)(_)(_)(_)(_)   \n");
+printf("   (_)          (_)     (_)(_)_     (_)         _(_) (_)_         (_)    _ (_)         (_)               \n");
+printf("   (_)_  _  _  _        (_)  (_)_   (_)       _(_)     (_)_       (_) _ (_)            (_) _  _          \n");
+printf("     (_)(_)(_)(_)_      (_)    (_)_ (_)      (_) _  _  _ (_)      (_)(_) _             (_)(_)(_)         \n");
+printf("    _           (_)     (_)      (_)(_)      (_)(_)(_)(_)(_)      (_)   (_) _          (_)               \n");
+printf("   (_)_  _  _  _(_)     (_)         (_)      (_)         (_)      (_)      (_) _       (_) _  _  _  _    \n");
+printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)         (_)      (_)(_)(_)(_)(_)   \n\n");
       arrowHere(1, position);
       printf("INICIAR\n");
       arrowHere(2, position);
@@ -343,5 +356,6 @@ int main()
 {
    //system("Music.mp3");
    srand(time(NULL));
-   menu();  
+   menu();
+   
 }
