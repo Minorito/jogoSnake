@@ -8,11 +8,10 @@
 #define FOOD 20
 
 typedef struct{
-       //coordenadas do corpo;
        int x, y; 
-       // 0 - se � corpo  1 - se � cabe�a
        int cabeca; 
 }corpo;
+
 
 typedef struct {
        int start, end;
@@ -25,30 +24,20 @@ typedef struct {
       corpo items[FOOD];
 }comida;
 
-//Declarando a estutura cobra (Global)
 queue cobra;
 
 comida Comida;
 
-//____________________________________FIM___________________________________
-
-
-
-
-
-//INCIALIZA A FILA
 void inicializa_queue(queue *fila){
      fila->start = QUEUESIZE - 1;
      fila->end = QUEUESIZE - 1;
 }
 
 
-//VERIFICA SE FILA VAZIA
 int empty(queue fila) {
     return fila.start == fila.end;
 }
 
-//RETIRA NA FILA
  corpo dequeue(queue *fila){
     if (empty(*fila)){
        printf("Fila vazia");
@@ -62,7 +51,6 @@ int empty(queue fila) {
 }
 
 
-//INSERE NA FILA
 void enqueue(queue *fila, corpo elem){
     
     int endtemp = fila->end;
@@ -78,6 +66,4 @@ void enqueue(queue *fila, corpo elem){
     } else
        fila->items[fila->end] = elem;
 }
-
-//____________________________FIM_________________________________
 
