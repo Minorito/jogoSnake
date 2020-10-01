@@ -157,14 +157,17 @@ void tela_fim(int num)
       system("color 60");
       printf("FIM DE JOGO: VOCE GANHOU");
 
+
    }
    else if (num == 2)
-   {
+   {  
       system("color C0");
       printf("FIM DE JOGO VOCE PERDEU");
+
    }
-   Sleep(300);
-   menu();
+   Sleep(100);
+    menu();
+
 }
 
 void anda_cobra(queue *cobra, char dir)
@@ -295,6 +298,7 @@ printf("     (_)(_)(_)(_)_      (_)    (_)_ (_)      (_) _  _  _ (_)      (_)(_)
 printf("    _           (_)     (_)      (_)(_)      (_)(_)(_)(_)(_)      (_)   (_) _          (_)               \n");
 printf("   (_)_  _  _  _(_)     (_)         (_)      (_)         (_)      (_)      (_) _       (_) _  _  _  _    \n");
 printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)         (_)      (_)(_)(_)(_)(_)   \n\n");
+printf("                                                                   Daniel Minoru Amaro Takabaishi  &  Samuel Piasecki\n\n");
       arrowHere(1, position);
       printf("INICIAR\n");
       arrowHere(2, position);
@@ -335,6 +339,7 @@ printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)   
          if (verifica_jogo(&cobra) == 1)
          {
             tela_fim(2);
+
          }
          else if (verifica_comida(Comida) == 1)
          {
@@ -342,6 +347,7 @@ printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)   
          }
 		       
        Sleep(100);
+
       } while (1);
    }
    else if(position == 2){
@@ -357,5 +363,6 @@ int main()
    //system("Music.mp3");
    srand(time(NULL));
    menu();
+   
    
 }
