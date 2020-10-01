@@ -15,8 +15,6 @@ int _comida = 0;
 long _speed = 40;
 int _dirD = 1, _dirA = 0, _dirW = 0, _dirS = 0, _x = 0, _jogar = 1;
 
-
-
 void arrowHere(int realPosition, int arrowPosition)
 {
    if (realPosition == arrowPosition)
@@ -37,7 +35,7 @@ void gotoxy(int x, int y)
    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
-void imprime_cobra (queue cobra)
+void imprime_cobra(queue cobra)
 {
    int i = cobra.start;
    while (i != cobra.end)
@@ -53,7 +51,7 @@ void imprime_cobra (queue cobra)
    }
 }
 
-void inicializa_cobra (queue *cobra)
+void inicializa_cobra(queue *cobra)
 {
    corpo elems[COBRASIZE];
    int i;
@@ -146,9 +144,11 @@ void cobra_come(queue *cobra, comida *Comida, corpo elem)
 
 void tela_fim(int num)
 {
+   char volta=0;
+
    if (_x > 79)
       _x = 0;
-      
+
    system("cls");
    gotoxy(++_x, 10);
 
@@ -156,24 +156,23 @@ void tela_fim(int num)
    {
       system("color 60");
       printf("FIM DE JOGO: VOCE GANHOU");
-
-
    }
    else if (num == 2)
-   {  
+   {
       system("color C0");
       printf("FIM DE JOGO VOCE PERDEU");
-
    }
-   Sleep(100);
-    menu();
-
+   printf("\n\n\n\nPressione a tecla Enter para retornar ao menu...");
+   volta = getch();
+   fflush(stdin);
+   if(volta == 13)
+      menu();
 }
 
 void anda_cobra(queue *cobra, char dir)
 {
    corpo elem, elem2, rastro;
-   
+
    if (dir == 'd')
    {
 
@@ -227,7 +226,6 @@ void anda_cobra(queue *cobra, char dir)
       elem2.y = elem.y;
       if (elem.x > 79)
          elem.x = 0;
-
    }
    else if (dir == 'a')
    {
@@ -243,7 +241,7 @@ void anda_cobra(queue *cobra, char dir)
    else if (dir == 'w')
    {
       andou = 1;
-      
+
       elem.x = cobra->items[cobra->end].x;
       elem2.x = elem.x;
       elem.y = cobra->items[cobra->end].y - 1;
@@ -254,13 +252,13 @@ void anda_cobra(queue *cobra, char dir)
    else if (dir == 's')
    {
       andou = 1;
-      
+
       elem.x = cobra->items[cobra->end].x;
       elem2.x = elem.x;
       elem.y = cobra->items[cobra->end].y + 1;
       elem2.y = elem.y + 1;
       if (elem.y > 23)
-      	elem.y = 0;
+         elem.y = 0;
    }
 
    if (andou)
@@ -274,36 +272,31 @@ void anda_cobra(queue *cobra, char dir)
    }
 }
 
-
-
 void menu()
-{  
-    int position = 1;
-    int keyPressed = 0;
-	char c;
-	long i;
-   
+{
+   int position = 1;
+   int keyPressed = 0;
+   char c;
+   long i;
 
-system("color A0");
-
+   system("color A0");
 
    while (keyPressed != 13)
    {
-   	
+
       system("cls");
       printf("\n    _(_)(_)(_)(_)_      (_) _       (_)           _(_)_           (_)       _ (_)      (_)(_)(_)(_)(_)   \n");
-printf("   (_)          (_)     (_)(_)_     (_)         _(_) (_)_         (_)    _ (_)         (_)               \n");
-printf("   (_)_  _  _  _        (_)  (_)_   (_)       _(_)     (_)_       (_) _ (_)            (_) _  _          \n");
-printf("     (_)(_)(_)(_)_      (_)    (_)_ (_)      (_) _  _  _ (_)      (_)(_) _             (_)(_)(_)         \n");
-printf("    _           (_)     (_)      (_)(_)      (_)(_)(_)(_)(_)      (_)   (_) _          (_)               \n");
-printf("   (_)_  _  _  _(_)     (_)         (_)      (_)         (_)      (_)      (_) _       (_) _  _  _  _    \n");
-printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)         (_)      (_)(_)(_)(_)(_)   \n\n");
-printf("                                                                   Daniel Minoru Amaro Takabaishi  &  Samuel Piasecki\n\n");
+      printf("   (_)          (_)     (_)(_)_     (_)         _(_) (_)_         (_)    _ (_)         (_)               \n");
+      printf("   (_)_  _  _  _        (_)  (_)_   (_)       _(_)     (_)_       (_) _ (_)            (_) _  _          \n");
+      printf("     (_)(_)(_)(_)_      (_)    (_)_ (_)      (_) _  _  _ (_)      (_)(_) _             (_)(_)(_)         \n");
+      printf("    _           (_)     (_)      (_)(_)      (_)(_)(_)(_)(_)      (_)   (_) _          (_)               \n");
+      printf("   (_)_  _  _  _(_)     (_)         (_)      (_)         (_)      (_)      (_) _       (_) _  _  _  _    \n");
+      printf("     (_)(_)(_)(_)       (_)         (_)      (_)         (_)      (_)         (_)      (_)(_)(_)(_)(_)   \n\n");
+      printf("                                                                   Daniel Minoru Amaro Takabaishi  &  Samuel Piasecki\n\n");
       arrowHere(1, position);
-      printf("INICIAR\n");
+      printf("INICIAR\n\n");
       arrowHere(2, position);
       printf("SAIR DO JOGO\n");
-
       keyPressed = getch();
       fflush(stdin);
 
@@ -331,7 +324,7 @@ printf("                                                                   Danie
 
       do
       {
-         if (kbhit()) 
+         if (kbhit())
             c = getch();
 
          anda_cobra(&cobra, c);
@@ -339,30 +332,27 @@ printf("                                                                   Danie
          if (verifica_jogo(&cobra) == 1)
          {
             tela_fim(2);
-
          }
          else if (verifica_comida(Comida) == 1)
          {
             tela_fim(1);
          }
-		       
-       Sleep(100);
+
+         Sleep(100);
 
       } while (1);
    }
-   else if(position == 2){
+   else if (position == 2)
+   {
       system("cls");
       system("PAUSE");
       exit(0);
    }
 }
 
-
 int main()
 {
    //system("Music.mp3");
    srand(time(NULL));
    menu();
-   
-   
 }
