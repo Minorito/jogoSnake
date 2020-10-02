@@ -9,7 +9,20 @@
 #define QUEUESIZE 1600
 #define COBRASIZE 2
 #define FOOD 10
-#define TAB 6
+void arrowHere(int realPosition, int arrowPosition);
+void gotoxy(int x, int y);
+void imprime_cobra(queue cobra);
+void inicializa_cobra(queue *cobra);
+void inicializa_cobra(queue *cobra);
+void inicializa_comida(comida *comida);
+void imprime_comida(comida comida);
+int verifica_jogo(queue *cobra);
+int verifica_comida(comida Comida);
+void cobra_come(queue *cobra, comida *Comida, corpo elem);
+void tela_fim(int num);
+void anda_cobra(queue *cobra, char dir);
+void menu();
+
 
 int _comida = 0;
 long _speed = 40;
@@ -352,7 +365,7 @@ void menu()
 
 int main()
 {
-   //system("Music.mp3");
+   system("Music.mp3");
    srand(time(NULL));
    menu();
 }
