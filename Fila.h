@@ -5,7 +5,7 @@
 #include <time.h>
 #define QUEUESIZE 1600
 #define COBRASIZE 2
-#define FOOD 20
+#define FOOD 15
 
 typedef struct
 {
