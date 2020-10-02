@@ -24,7 +24,7 @@ void menu();
 
 int _comida = 0;
 long _speed = 40;
-int _dirD = 1, _dirA = 0, _dirW = 0, _dirS = 0, _x = 0, _jogar = 1;
+int _dirD = 0, _dirA = 0, _dirW = 0, _dirS = 0, _x = 0, _jogar = 1;
 
 void arrowHere(int realPosition, int arrowPosition)
 {
@@ -186,7 +186,7 @@ void anda_cobra(queue *cobra, char dir)
 
    if (dir == 'd')
    {
-      _dirS = 1;
+      _dirD = 1;
       _dirW = 0;
       _dirS = 0;
    }
