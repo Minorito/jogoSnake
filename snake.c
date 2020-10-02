@@ -6,9 +6,7 @@
 #include <ctype.h>
 #include <time.h>
 #include "Fila.h"
-#define QUEUESIZE 1600
-#define COBRASIZE 2
-#define FOOD 10
+
 void arrowHere(int realPosition, int arrowPosition);
 void gotoxy(int x, int y);
 void imprime_cobra(queue cobra);
@@ -58,7 +56,7 @@ void imprime_cobra(queue cobra)
          i = 0;
       gotoxy(cobra.items[i].x, cobra.items[i].y);
       if (cobra.items[i].cabeca)
-         printf(" ");
+         printf("254");
       else
          printf("%c", 254);
    }
@@ -81,7 +79,7 @@ void inicializa_cobra(queue *cobra)
       elems[i].x = i;
       elems[i].y = 0;
 
-      enqueue(cobra, elems[i]);
+      insere(cobra, elems[i]);
    }
    imprime_cobra(*cobra);
 }
@@ -142,7 +140,7 @@ void cobra_come(queue *cobra, comida *Comida, corpo elem)
           (cobra->items[cobra->end].y == Comida->items[i].y) && (Comida->items[i].cabeca))
       {
          cobra->items[cobra->end].cabeca = 0;
-         enqueue(cobra, elem);
+         insere(cobra, elem);
          Comida->items[i].cabeca = 0;
          _comida++;
       }
@@ -188,28 +186,24 @@ void anda_cobra(queue *cobra, char dir)
 
    if (dir == 'd')
    {
-
       _dirS = 1;
       _dirW = 0;
       _dirS = 0;
    }
    else if (dir == 'a')
    {
-
       _dirA = 1;
       _dirW = 0;
       _dirS = 0;
    }
    else if (dir == 'w')
    {
-
       _dirW = 1;
       _dirD = 0;
       _dirA = 0;
    }
    else if (dir == 's')
    {
-
       _dirS = 1;
       _dirD = 0;
       _dirA = 0;
@@ -243,7 +237,6 @@ void anda_cobra(queue *cobra, char dir)
    else if (dir == 'a')
    {
       andou = 1;
-
       elem.x = cobra->items[cobra->end].x - 1;
       elem2.x = elem.x - 1;
       elem.y = cobra->items[cobra->end].y;
@@ -254,7 +247,6 @@ void anda_cobra(queue *cobra, char dir)
    else if (dir == 'w')
    {
       andou = 1;
-
       elem.x = cobra->items[cobra->end].x;
       elem2.x = elem.x;
       elem.y = cobra->items[cobra->end].y - 1;
@@ -276,8 +268,8 @@ void anda_cobra(queue *cobra, char dir)
 
    if (andou)
    {
-      enqueue(cobra, elem);
-      rastro = dequeue(cobra);
+      insere(cobra, elem);
+      rastro = remove(cobra);
       gotoxy(rastro.x, rastro.y);
       printf(" ");
       cobra_come(cobra, &Comida, elem2);
@@ -293,7 +285,6 @@ void menu()
    long i;
 
    system("color A0");
-
    while (keyPressed != 13)
    {
 
@@ -312,7 +303,6 @@ void menu()
       printf("SAIR DO JOGO\n");
       keyPressed = getch();
       fflush(stdin);
-
       if (keyPressed == 80 && position != 2)
       {
          position++;
@@ -331,7 +321,6 @@ void menu()
       system("cls");
       inicializa_comida(&Comida);
       imprime_comida(Comida);
-
       inicializa_queue(&cobra);
       inicializa_cobra(&cobra);
 
@@ -339,9 +328,7 @@ void menu()
       {
          if (kbhit())
             c = getch();
-
          anda_cobra(&cobra, c);
-
          if (verifica_jogo(&cobra) == 1)
          {
             tela_fim(2);
@@ -350,9 +337,7 @@ void menu()
          {
             tela_fim(1);
          }
-
          Sleep(100);
-
       } while (1);
    }
    else if (position == 2)
