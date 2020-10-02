@@ -269,7 +269,7 @@ void anda_cobra(queue *cobra, char dir)
    if (andou)
    {
       insere(cobra, elem);
-      rastro = remove(cobra);
+      rastro = remove_fila(cobra);
       gotoxy(rastro.x, rastro.y);
       printf(" ");
       cobra_come(cobra, &Comida, elem2);

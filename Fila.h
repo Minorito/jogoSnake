@@ -39,7 +39,7 @@ int empty(queue fila)
    return fila.start == fila.end;
 }
 
-corpo remove(queue *fila)
+corpo remove_fila(queue *fila)
 {
    if (empty(*fila))
    {
