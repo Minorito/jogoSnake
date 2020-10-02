@@ -56,7 +56,7 @@ void imprime_cobra(queue cobra)
          i = 0;
       gotoxy(cobra.items[i].x, cobra.items[i].y);
       if (cobra.items[i].cabeca)
-         printf("254");
+         printf("%c", 254);
       else
          printf("%c", 254);
    }
